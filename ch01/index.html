@@ -1,0 +1,26 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pixi.js　チュートリアル日本語版</title>
+<body>
+<script src="../pixi.js/bin/pixi.js"></script>
+<script>
+// 短縮のため、別名をつける（Aliases）
+var Container = PIXI.Container,
+    autoDetectRenderer = PIXI.autoDetectRenderer;
+
+// レンダラーのサイズを指定する、コンテナ（枠）を作る
+var renderer = autoDetectRenderer(512, 384),
+    stage = new Container();
+
+// コンテナの内容をレンダラーに伝える
+renderer.render(stage);
+
+// バディーに貼り付ける（表示させる） 
+document.body.appendChild(renderer.view);
+</script>
+<h1>ch01 1/5</h1>
+<section>
+  <a href="index2.html">つづく</a> 
+</section>
+</body>
+

@@ -1,0 +1,100 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pixi.js　チュートリアル日本語版</title>
+<body>
+<script src="../pixi.js/bin/pixi.js"></script>
+<script>
+// 短縮のため、別名をつける（Aliases）
+// loader, resources, tile関するもの追加
+var Container = PIXI.Container,
+    autoDetectRenderer = PIXI.autoDetectRenderer,
+    loader = PIXI.loader,
+    resources = PIXI.loader.resources,
+    // Sprite = PIXI.Sprite;
+    fromImage = PIXI.Texture.fromImage,
+    TilingSprite = PIXI.extras.TilingSprite;
+
+// レンダラーのサイズを指定する、コンテナ（枠）を作る
+var renderer = autoDetectRenderer(512, 384),
+    stage = new Container();
+
+// 二枚の画像を読み込む、読み込んだらsetup function起動する
+loader.add(["images/bg-far.png", "images/bg-mid.png"])
+	  .load(setup);
+
+// 変数を外へ移動（グローバル変数）
+var far, mid;
+
+// setup functionの中身
+function setup(){
+
+
+  // タイルとして読み込む、Far functionへ移動
+  // var farTexture = fromImage("images/bg-far.png");
+
+  // 画像を呼び出す（Far function使用）
+  // パラメーター削除
+  far = new Far();
+  stage.addChild(far);
+
+
+  // タイルとして読み込む
+  var midTexture = fromImage("images/bg-mid.png");
+  // タイル貼る範囲を指定する
+  mid = new TilingSprite(midTexture, 512, 256);
+
+  // 位置を指定（全てのデフォルトは0）
+  mid.x = 0;
+  mid.y = 128;
+  mid.tilePosition.x = 0;
+  mid.tilePosition.y = 0;
+
+  stage.addChild(mid);
+
+
+  // 描画処理を繰り返しupdate functionを実行する
+  requestAnimationFrame(update);
+}
+
+// Far画像を独立させる
+// パラメーター削除
+function Far() {
+
+  // タイルとして読み込む、textureという名で
+  var texture = fromImage("images/bg-far.png");
+
+  // タイル貼る範囲を指定する（setup functionから持ってくる）
+  TilingSprite.call(this, texture, 512, 256);
+
+  // 位置を指定（全てのデフォルトは0）（setup functionから持ってくる）
+  this.x = 0;
+  this.y = 0;
+  this.tilePosition.x = 0;
+  this.tilePosition.y = 0;
+}
+Far.prototype = Object.create(TilingSprite.prototype);
+
+
+// update functionの中身
+function update(){
+
+  // 組み合わせたタイルを左へずらす
+  far.tilePosition.x -= 0.128;
+  mid.tilePosition.x -= 0.64;
+
+　// コンテナの内容をレンダラーに伝える（setup functionから持ってくる）
+  renderer.render(stage);
+
+  requestAnimationFrame(update);
+}
+
+// バディーに貼り付ける（表示させる） 
+document.body.appendChild(renderer.view);
+</script>
+<h1>ch02 3/5</h1>
+<section>
+  <a href="index2.html">もどる</a> 
+  <a href="index4.html">つづく</a> 
+</section>
+</body>
+

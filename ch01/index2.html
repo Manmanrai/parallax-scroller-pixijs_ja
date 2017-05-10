@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pixi.js　チュートリアル日本語版</title>
+<body>
+<script src="../pixi.js/bin/pixi.js"></script>
+<script>
+// 短縮のため、別名をつける（Aliases）
+// loader, resources, Sprite追加
+var Container = PIXI.Container,
+    autoDetectRenderer = PIXI.autoDetectRenderer,
+    loader = PIXI.loader,
+    resources = PIXI.loader.resources,
+    Sprite = PIXI.Sprite;
+
+// レンダラーのサイズを指定する、コンテナ（枠）を作る
+var renderer = autoDetectRenderer(512, 384),
+    stage = new Container();
+
+// 画像を読み込む、読み込んだらsetup function起動する
+loader.add("images/bg-far.png")
+	  .load(setup);
+
+// setup functionの中身
+function setup(){
+
+  // 画像をコンテナに突っ込む
+  var far = new Sprite(resources["images/bg-far.png"].texture);
+  stage.addChild(far);
+
+  // コンテナの内容をレンダラーに伝える（外から持ってくる）
+  renderer.render(stage);
+}
+
+// コンテナの内容をレンダラーに伝える
+// renderer.render(stage);
+
+// バディーに貼り付ける（表示させる） 
+document.body.appendChild(renderer.view);
+</script>
+<h1>ch01 2/5</h1>
+<section>
+  <a href="index.html">もどる</a> 
+  <a href="index3.html">つづく</a> 
+</section>
+</body>
+
