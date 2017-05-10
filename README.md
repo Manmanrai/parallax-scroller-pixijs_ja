@@ -7,7 +7,7 @@ http://www.yeahbutisitflash.com/?p=5226
 Translate by me(Manmanrai)
 
 # Pixi.jsでパララックススクローラー作ってみる(日本語版)
-チュートリアルの原作はこちらです。
+チュートリアルの原作はこちらです。   
 http://www.yeahbutisitflash.com/?p=5226
 
 原作者：Christopher Caleb   
